@@ -36,7 +36,7 @@ class GoogleSignIn extends React.Component{
         return (
             <div className= "nav-upper">
                 <div className = "cover-image">
-                    <img src="/assets/profile_icon.png" className = "cover-image-profile-icon"/>
+                    <img src={window.signinPic} className = "cover-image-profile-icon"/>
                     <span className = "cover-image-text">SIGN IN</span>
                 </div>
                 <div className = "google-signin-button" id='my-signin2'></div>
