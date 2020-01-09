@@ -21,3 +21,38 @@
 .show {
     display: block;
 }
+
+.user-sidebar-profile-info {
+    border: 1px solid lightgrey;
+    display: flex;
+    /* flex-direction: column; */
+    border-top: none;
+}
+
+.user-sidebar-profile-info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-sidebar-profile-info-image {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.user-sidebar-profile-info-name {
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-size:  */
+}
+
+.user-sidebar-profile-info-email {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-sidebar-signout-button {
+    border: 1px solid lightgrey;
+    border-top: none;
+}

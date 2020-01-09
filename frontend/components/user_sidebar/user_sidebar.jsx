@@ -21,9 +21,13 @@ const UserSidebar = ({ currentUser, logout }) => {
     const personalInfo = () => (
         <div className="user-sidebar">
             <div id="dropdown" className="user-sidebar-profile">
-                <h2 className="user-sidebar-profile-info-name">{currentUser.username}</h2>
-                <h2 className="user-sidebar-profile-info-email">{currentUser.email}</h2>
-                <img className="user-sidebar-profile-info-image" src={currentUser.image_url} />
+                <section className="user-sidebar-profile-info">
+                    <img className="user-sidebar-profile-info-image" src={currentUser.image_url} />
+                    <section className="user-sidebar-profile-info-text">
+                        <h2 className="user-sidebar-profile-info-name">{currentUser.username}</h2>
+                        <h2 className="user-sidebar-profile-info-email">{currentUser.email}</h2>
+                    </section>
+                </section>
                 <div className="user-sidebar-signout-button" onClick={logout}>SIGN OUT</div>
             </div>
             <img className="user-profile-button" onClick={() => handleProfileClick()} src={currentUser.image_url} />
