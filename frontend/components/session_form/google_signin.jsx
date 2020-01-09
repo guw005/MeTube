@@ -29,7 +29,6 @@ class GoogleSignIn extends React.Component{
             'longtitle': false,
             'theme': 'light',
             'onsuccess': this.onSuccess,
-            // 'onfailure': this.onFailure
         });
     }
 
