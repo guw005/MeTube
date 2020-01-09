@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create]
     resource :session, only: [:create, :destroy]
   end
+
+  get '/api/session/google', :to => 'api/sessions#google_sign_in'
 end

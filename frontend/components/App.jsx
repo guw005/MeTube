@@ -1,11 +1,13 @@
 import React from "react";
-import GreetingContainer from "./greeting/greating_container";
+import {Route} from "react-router-dom";
+import UserSidebarContainer from "./user_sidebar/user_sidebar_container";
+
 
 const App = () => (
   <div>
     <header>
-      <h1>Metube</h1>
-      <GreetingContainer />
+      
+      <UserSidebarContainer />
     </header>
   </div>
 );

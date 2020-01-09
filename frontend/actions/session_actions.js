@@ -41,3 +41,15 @@ export const logout = () => dispatch => {
     return APIUtil.logout()
     .then(() => dispatch(logoutCurrentUser()))
 };
+
+export const googlelogin = (idToken) => dispatch => {
+    return APIUtil.googleLogin(idToken).then(
+        user => {
+            dispatch(receiveCurrentUser(user));
+            const auth2 = gapi.auth2.getAuthInstance();
+            if (auth2 != null) {
+                auth2.signOut().then(auth2.disconnect());
+            }
+        }
+    )
+}

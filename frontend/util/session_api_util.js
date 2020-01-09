@@ -31,3 +31,13 @@ export const fetchUser = (userId) => {
         url: `/api/users/${userId}`
     })
 };
+
+export const googleLogin = (idToken) => {
+    return $.ajax({
+        method: "GET",
+        url: '/api/session/google',
+        data: {
+            id_token: idToken
+        }
+    })
+}
