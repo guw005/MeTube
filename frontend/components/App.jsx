@@ -5,8 +5,7 @@ import UserSidebarContainer from "./user_sidebar/user_sidebar_container";
 
 const App = () => (
   <div>
-    <header>
-      
+    <header className="upper-header">
       <UserSidebarContainer />
     </header>
   </div>

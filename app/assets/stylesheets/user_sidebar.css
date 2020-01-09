@@ -1,0 +1,23 @@
+.user-sidebar {
+    display: flex;
+    justify-content: flex-end;
+    height: 56px;
+    padding: 0 16px;
+}
+
+.user-profile-button {
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.user-sidebar-profile{
+    display: none;
+}
+
+.show {
+    display: block;
+}
