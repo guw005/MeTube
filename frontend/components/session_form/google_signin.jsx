@@ -17,14 +17,9 @@ class GoogleSignIn extends React.Component{
     }
 
     onSuccess(googleUser) {
-        // console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
         this.props.processForm(googleUser.getAuthResponse().id_token);
-        // console.log(googleUser.getBasicProfile().getImageUrl());
     }
 
-    // onFailure(error) {
-    //     console.log(error);
-    // }
 
     renderButton() {
         gapi.signin2.render('my-signin2', {
