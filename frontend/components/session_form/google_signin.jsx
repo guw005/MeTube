@@ -20,6 +20,10 @@ class GoogleSignIn extends React.Component{
         this.props.processForm(googleUser.getAuthResponse().id_token);
     }
 
+    demoUserLogin() {
+        this.props.demoUserLogin({ email: 'demouser@gmail.com', password: 'password'})
+    } 
+
 
     renderButton() {
         gapi.signin2.render('my-signin2', {
@@ -39,7 +43,12 @@ class GoogleSignIn extends React.Component{
                     <img src={window.signinPic} className = "cover-image-profile-icon"/>
                     <span className = "cover-image-text">SIGN IN</span>
                 </div>
-                <div className = "google-signin-button" id='my-signin2'></div>
+                <div className="demo-login-dropdown">
+                    <div className="demo-login" onClick={() => this.demoUserLogin()} >
+                        <span className="demo-login-text">DEMO LOGIN</span>
+                    </div>
+                    <div className = "google-signin-button" id='my-signin2'></div>
+                </div>
             </div>
         )
     }

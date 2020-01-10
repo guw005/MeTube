@@ -28,7 +28,12 @@ const UserSidebar = ({ currentUser, logout }) => {
                         <h2 className="user-sidebar-profile-info-email">{currentUser.email}</h2>
                     </section>
                 </section>
-                <div className="user-sidebar-signout-button" onClick={logout}>SIGN OUT</div>
+                <section className="user-sidebar-function">
+                    <section className="user-sidebar-function-signout" onClick={logout}>
+                        <img className="user-sidebar-signout-image" src={window.signoutPic} />
+                        <h2 className="user-sidebar-signout-text">Sign out</h2>
+                    </section>
+                </section>
             </div>
             <img className="user-profile-button" onClick={() => handleProfileClick()} src={currentUser.image_url} />
         </div>
