@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :create]
     resource :session, only: [:create, :destroy]
+    resources :videos, only: [:index, :show, :create, :update, :destroy]
   end
 
   get '/api/session/google', :to => 'api/sessions#google_sign_in'

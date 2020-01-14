@@ -5,6 +5,11 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
+    has_many :videos,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :Video
+
     attr_reader :password
     def password=(password)
         @password = password
