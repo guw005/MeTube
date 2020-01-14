@@ -1,4 +1,5 @@
 import React from 'react';
+import { uploadTime } from './../../util/date_util'
 
 const VideoIndexItem = ({video, user, history}) => {
 
@@ -14,7 +15,9 @@ const VideoIndexItem = ({video, user, history}) => {
             <span className="video-index-title">{video.title}</span>
             <span className="video-index-author">{user.username}</span>
             <span className="video-index-views-and-time">
-                {`${video.view_counts} views ${video.created_at}`}
+              {`${video.view_counts} views \u2022 ${uploadTime(
+                video.created_at
+              )} ago`}
             </span>
           </section>
         </section>
