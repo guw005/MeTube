@@ -1,3 +1,7 @@
+.outter-video-show {
+    display: flex;
+}
+
 .video-show {
     display: flex;
     flex-direction: column;

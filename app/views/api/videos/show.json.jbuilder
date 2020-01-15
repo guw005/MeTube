@@ -7,3 +7,19 @@ end
 json.user do
     json.partial! 'api/users/user', user: @video.author
 end
+
+json.videos do
+    @videos.each do |video|
+        json.set! video.id do
+            json.extract! video,:id, :title, :author_id, :view_counts, :created_at
+        end
+    end
+end
+
+json.users do
+    @videos.each do |video|
+        json.set! video.author_id do
+            json.extract! video.author, :id, :username, :image_url
+        end
+    end
+end

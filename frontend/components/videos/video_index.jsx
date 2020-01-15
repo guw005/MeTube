@@ -9,18 +9,23 @@ class VideoIndex extends React.Component{
 
     render(){
         return (
-          <div>
-              <section>
-                  <h1>Recommended</h1>
-                  {this.props.videos.map(video => (
-                      <VideoIndexItem 
-                      video={video}
-                      user={this.props.users[video.author_id]}
-                      history={this.props.history}
-                      key={video.id}
-                      />
-                  ))}
+          <div className="index-page">
+            <section>
+                <nav>NavBar</nav>
+            </section>
+            <section className="video-index">
+              <h1 className="recommended-tag">Recommended</h1>
+              <section className="recommended-video-index">
+                {this.props.videos.map(video => (
+                  <VideoIndexItem
+                    video={video}
+                    user={this.props.users[video.author_id]}
+                    history={this.props.history}
+                    key={video.id}
+                  />
+                ))}
               </section>
+            </section>
           </div>
         );
     }

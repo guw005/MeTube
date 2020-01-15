@@ -11,6 +11,19 @@ class Api::VideosController < ApplicationController
         if @video
             @video.view_counts += 1
             @video.save
+
+
+            title = @video.title.split("'").join("").split(" ").map { |t| "title LIKE '%#{t}%'" }
+            title_input = title.join(" OR ")
+            @videos = Video
+            .with_attached_thumbnail
+            .where.not(id: params[:id])
+            .where(title_input)
+
+            if @videos.length == 0
+                @videos = Video.where.not(id: params[:id])
+            end
+            
             render 'api/videos/show'
         else
             render json: @video.errors.full_messages, status: 422

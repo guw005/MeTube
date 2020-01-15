@@ -32,7 +32,9 @@ export const fetchAllVideos = () => dispatch => {
 
 export const fetchVideo = videoId => dispatch => {
     return VideoAPIUtil.fetchVideo(videoId)
-        .then(payload => dispatch(receiveVideo(payload)))
+        .then(payload => {
+            dispatch(receiveVideo(payload));
+        })
 };
 
 export const createVideo = video => dispatch => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { uploadTime } from './../../util/date_util'
+import { uploadTime } from './../../util/date_util';
 
 const VideoIndexItem = ({video, user, history}) => {
 
