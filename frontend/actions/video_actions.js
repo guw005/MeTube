@@ -37,10 +37,11 @@ export const fetchVideo = videoId => dispatch => {
         })
 };
 
-export const createVideo = video => dispatch => {
-    return VideoAPIUtil.createVideo(video)
-        .then(payload => (dispatch(receiveVideo(payload))),
-        err => (dispatch(receiveVideoErrors(err.responseJSON)))
+export const createVideo = formData => dispatch => {
+    return VideoAPIUtil.createVideo(formData)
+        .then(
+            payload => dispatch(receiveVideo(payload)),
+            err => dispatch(receiveVideoErrors(err.responseJSON))
         )
 };
 
