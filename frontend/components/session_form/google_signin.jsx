@@ -5,6 +5,7 @@ class GoogleSignIn extends React.Component{
     constructor(props){
         super(props);
         this.onSuccess = this.onSuccess.bind(this);
+        // this.EventHandler = this.EventHandler.bind(this);
         // this.attachSignin = this.attachSignin.bind(this);
     }
     componentDidMount(){
@@ -12,6 +13,14 @@ class GoogleSignIn extends React.Component{
             if (gapi) {
                 this.renderButton();
                 clearInterval(intervalId);
+                const signin = document.getElementById("my-signin2");
+                const upload = document.getElementById(
+                  "upload-pic-container-signin"
+                );
+                    
+                upload.addEventListener("click", () => {
+                        signin.children[0].click();
+                });
             }
         }, 100)
     }
@@ -21,7 +30,8 @@ class GoogleSignIn extends React.Component{
     }
 
     demoUserLogin() {
-        this.props.demoUserLogin({ email: 'demouser@gmail.com', password: 'password'})
+        this.props.demoUserLogin({ email: 'demouser@gmail.com', password: 'password'});
+
     } 
 
 

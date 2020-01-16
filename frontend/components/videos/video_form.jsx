@@ -4,16 +4,10 @@ import { withRouter } from 'react-router-dom';
 class VideoForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            title: "",
-            description: "",
-            thumbnailFile: null,
-            thumbnailUrl:  null,
-            videoFile: null,
-            videoUrl: null
-        }
+        this.state = this.props.video;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     update(type){
@@ -45,12 +39,65 @@ class VideoForm extends React.Component{
         if(this.state.videoFile){
           formData.append('video[video_file]', this.state.videoFile);
         }
+
+        if(this.props.formType === 'Upload video'){
+          this.props.createVideo(formData).then(resp => {
+            this.props.hideModal();
+            document.getElementById("modal-container-hidden").style.display = "none";
+            this.props.history.push(`/videos/${resp.payload.video.id}`);
+          });
+        } else if (this.props.formType === 'Edit video') {
+          this.props.updateVideo(formData, this.props.video.id).then(() => {
+            this.props.hideModal();
+            document.getElementById("modal-container-hidden").style.display = "none";
+          })
+        }
         
-        this.props.createVideo(formData).then(resp =>{
-          this.props.hideModal();
-          document.getElementById('modal-container-hidden').style.display = "none";
-          this.props.history.push(`/videos/${resp.payload.video.id}`);
-        });
+    
+    }
+
+    _videoInput(){
+      const display = this.props.formType === "Upload video" ? (
+        <label>
+          <input
+              type="file"
+              onChange={e => this.handleFile(e, "videoFile", "videoUrl")}
+          />
+          <span>Drag and drop a file you want to upload</span>
+          <span>Your video will be private until you publish it</span>
+        </label>
+      ) : null;
+
+      return(
+        <>
+          {display}
+        </>
+      )
+    }
+
+    handleDelete(e){
+      e.preventDefault();
+
+      this.props.deleteVideo(this.props.video.id).then(()=>{
+            this.props.hideModal();
+            document.getElementById("modal-container-hidden").style.display =
+              "none";
+            this.props.history.push(`/`);
+      })
+    }
+
+    _deleteButton(){
+      const display = this.props.formType === "Edit video" ? (
+        <div onClick={this.handleDelete}>
+          <span>DELETE VIDEO</span>
+        </div>
+      ) : null;
+
+      return(
+        <>
+          {display}
+        </>
+      )
     }
 
     render(){
@@ -58,7 +105,7 @@ class VideoForm extends React.Component{
         return (
           <form className="form-container" onSubmit={this.handleSubmit}>
             <div className="form-top-section">
-              <span className="form-top-section-text">Upload video</span>
+              <span className="form-top-section-text">{this.props.formType}</span>
               <div className="form-top-section-close">
                 <span
                   onClick={() => {
@@ -105,15 +152,10 @@ class VideoForm extends React.Component{
               />
             </label>
             {preview}
+                
+            {this._videoInput()}
+            {this._deleteButton()}
 
-            <label>
-              <input
-                type="file"
-                onChange={e => this.handleFile(e, "videoFile", "videoUrl")}
-              />
-              <span>Drag and drop a file you want to upload</span>
-              <span>Your video will be private until you publish it</span>
-            </label>
 
             <input type="submit" value="DONE"/>
           </form>

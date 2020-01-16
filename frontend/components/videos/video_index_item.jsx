@@ -1,7 +1,19 @@
 import React from 'react';
 import { uploadTime } from './../../util/date_util';
 
-const VideoIndexItem = ({video, user, history}) => {
+const VideoIndexItem = ({video, user, history, type}) => {
+
+  const _authorPic = () => {
+    const display = type === 'indexPage' ? (
+      <img className="video-author-pic" src={user.image_url} />
+    ) : null;
+
+    return(
+      <>
+      {display}
+      </>
+    )
+  }
 
     return (
       <div
@@ -10,7 +22,10 @@ const VideoIndexItem = ({video, user, history}) => {
       >
         <img className="video-index-thumbnail" src={video.thumbnail} />
         <section className="video-index-info">
-          <img className="video-author-pic" src={user.image_url} />
+          <>
+            {_authorPic()}
+          </>
+          {/* <img className="video-author-pic" src={user.image_url} /> */}
           <section className="video-author-info">
             <span className="video-index-title">{video.title}</span>
             <span className="video-index-author">{user.username}</span>

@@ -19,21 +19,47 @@ class VideoShow extends React.Component{
       }
     }
 
+    // _editButton(){
+    //   const display = this.props.currentUser === this.props.video.author_id ? (
+    //     <div onClick={() => {
+    //       this.props.showModal({type:'editVideo'});
+    //       document.getElementById('modal-container-hidden').style.display="block";
+    //       }}>
+    //       <span>EDIT VIDEO</span>
+    //     </div>
+    //   ) : null;
+        
+    //   return(
+    //     <>
+    //       {display}
+    //     </>
+    //   )
+    // }
+
     render(){
 
-        const {video, users, relatedVideos, history} = this.props
+        const {video, users, relatedVideos, history, currentUser, showModal} = this.props
         if(!video) return null;
 
         return (
           <div className="outer-video-show">
-            <VideoShowItem video={video} users={users} />
+            <VideoShowItem
+              video={video}
+              users={users}
+              currentUser={currentUser}
+              showModal={showModal}
+            />
             <div className="related-video-index">
+              <div className="up-next-container">
+                <span className="up-next">Up next</span>
+              </div>
               {relatedVideos.map(video => (
                 <VideoIndexItem
                   key={video.id}
                   video={video}
                   user={users[video.author_id]}
                   history={history}
+                  type="relatedIndex"
                 />
               ))}
             </div>

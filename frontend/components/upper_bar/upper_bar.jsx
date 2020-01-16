@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class upperBar extends React.Component{
+
     handleShowModal() {
         if(this.props.currentUser){
             return (
-              <span
+              <div
+                id="upload-pic"
+                className="upload-pic-container"
                 onClick={
                     () => {
                         this.props.showModal({ type: "uploadVideo" });
@@ -13,26 +16,40 @@ class upperBar extends React.Component{
                     }
                 }
               >
-                upload Video
-              </span>
+                <img className="upload-pic" src={window.videoUploadPic}/>
+              </div>
             );
         } else {
+            
             return (
-                <span>Login first</span>
-            )
+              <section
+                id="upload-pic-container-signin"
+                className="upload-pic-container-signin"
+              >
+                <img className="upload-pic-signin" src={window.videoUploadPic} />
+              </section>
+            );
         }
     }
 
     render() {
-        return(
-            <div>
-                <span>hamburger icon</span>
-                <Link to='/'>Metube logo</Link>
-                {this.handleShowModal()}
+        return (
+          <div className="upper-bar">
+            <div className="hamburger-pic-container">
+              <img className="hamburger-pic" src={window.hamburgerPic} />
             </div>
-        )
+            <div
+              className="youtube-pic-container"
+              onClick={() => this.props.history.push("/")}
+            >
+              <img className="youtube-pic" src={window.youtubePic} />
+            </div>
+            <div className="search-bar"></div>
+            <>{this.handleShowModal()}</>
+          </div>
+        );
 
     }
 }
 
-export default upperBar;
+export default withRouter(upperBar);

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import VideoShow from "./video_show";
 import { fetchVideo, fetchAllVideos } from "./../../actions/video_actions";
+import { showModal } from "../../actions/modal_actions";
 
 const mSP = (state, ownProps) => {
     return({
@@ -12,6 +13,7 @@ const mSP = (state, ownProps) => {
 };
 
 const mDP = dispatch => ({
+    showModal: (modal) => dispatch(showModal(modal)),
     fetchVideo: (videoId) => dispatch(fetchVideo(videoId)),
     fetchAllVideos: () => dispatch(fetchAllVideos)
 })

@@ -10,7 +10,7 @@ class VideoIndex extends React.Component{
     render(){
         return (
           <div className="index-page">
-            <section>
+            <section className="nav-bar">
                 <nav>NavBar</nav>
             </section>
             <section className="video-index">
@@ -22,6 +22,7 @@ class VideoIndex extends React.Component{
                     user={this.props.users[video.author_id]}
                     history={this.props.history}
                     key={video.id}
+                    type='indexPage'
                   />
                 ))}
               </section>

@@ -1,5 +1,6 @@
 import React from 'react';
 import UploadVideoContainer from './../videos/create_video_form_container';
+import UpdateVideoContainer from './../videos/update_video_form_container';
 import { NavLink } from 'react-router-dom';
 
 class Modal extends React.Component{
@@ -34,7 +35,7 @@ class Modal extends React.Component{
         if(this.props.modal.type === 'uploadVideo'){
             display = <UploadVideoContainer />
         } else {
-            display = null;
+            display = <UpdateVideoContainer />
         }
         return (
           <div id="modal-container-hidden">

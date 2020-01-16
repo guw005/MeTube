@@ -6,12 +6,20 @@ import VideoForm from './video_form';
 
 const mSP = state => ({
     // currentUserId: state.session.id,
-    formType: 'Upload Video',
+    video: {
+        title: "",
+        description: "",
+        thumbnailFile: null,
+        thumbnailUrl:  null,
+        videoFile: null,
+        videoUrl: null
+    },
+    formType: 'Upload video',
     errors: state.errors.video
 });
 
 const mDP = dispatch => ({
-    createVideo: (video, cb) => dispatch(createVideo(video, cb)),
+    createVideo: (video) => dispatch(createVideo(video)),
     clearErrors: () => dispatch(clearErrors()),
     hideModal: () => dispatch(hideModal())
 })

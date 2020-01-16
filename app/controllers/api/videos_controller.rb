@@ -45,7 +45,7 @@ class Api::VideosController < ApplicationController
             if @videos.length == 0
                 @videos = Video.where.not(id: params[:id])
             end
-            
+
             render 'api/videos/show'
         else
             render json: @video.errors.full_messages, status: 422
@@ -55,7 +55,22 @@ class Api::VideosController < ApplicationController
     def update
         @video = current_user.videos.find(params[:id])
 
-        if @video.update(video_params)
+        if @video.update_attributes(
+            :title => params[:video][:title],
+            :description => params[:video][:description]
+            )
+
+            title = @video.title.split("'").join("").split(" ").map { |t| "title LIKE '%#{t}%'" }
+            title_input = title.join(" OR ")
+            @videos = Video
+            .with_attached_thumbnail
+            .where.not(id: params[:id])
+            .where(title_input)
+
+            if @videos.length == 0
+                @videos = Video.where.not(id: params[:id])
+            end
+
             render 'api/videos/show'
         else
             render json: @video.errors.full_messages, status: 422
@@ -65,7 +80,8 @@ class Api::VideosController < ApplicationController
     def destroy
         @video = current_user.videos.find(params[:id])
 
-        @video.destory
+        @video.destroy
+        @videos = Video.all.includes(:author)
         render 'api/videos/index'
     end
 

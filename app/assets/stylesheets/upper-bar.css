@@ -1,0 +1,61 @@
+.upper-bar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.hamburger-pic-container {
+    width: 24px;
+    height: 24px;
+    padding: 8px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger-pic {
+    width: 24px;
+    height: 24px;
+    filter: invert(60%);
+}
+
+.youtube-pic-container {
+    width: 129px;
+    height: 24px;
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.youtube-pic {
+    width: 80px;
+    height: 24px;
+    /* background: white; */
+}
+
+.search-bar {
+    width: 100%;
+    height: 32px;
+    margin: 0 40px;
+    float: left;
+}
+
+.upload-pic-container, .upload-pic-container-signin {
+    width: 24px;
+    height: 24px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-pic, .upload-pic-signin {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: opacity(0.5);
+    cursor: pointer;
+}

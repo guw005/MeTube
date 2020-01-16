@@ -1,6 +1,6 @@
 .user-sidebar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     height: 56px;
     padding: 0 16px;
     position: relative;
@@ -12,6 +12,7 @@
     z-index: 1;
     background-color: white;
     top: 80%;
+    right: 16px;
 }
 
 .user-profile-button {
