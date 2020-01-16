@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
     def google_sign_in
         validator = GoogleIDToken::Validator.new
       begin
-        payload = validator.check(params[:id_token], JWT.decode(params[:id_token], nil, false)[0]["aud"], "913398417254-hgqj42b4v6c6jsd8adri3u8k2ipr28ds.apps.googleusercontent.com")
+        payload = validator.check(params[:id_token], JWT.decode(params[:id_token], nil, false)[0]["aud"], "915909549025-bkjrnktkij7a19urabsafcvcefjktipp.apps.googleusercontent.com")
         email = payload['email']
         @user = User.find_by(email: email)
       if(@user)
