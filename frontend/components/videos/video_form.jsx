@@ -57,14 +57,29 @@ class VideoForm extends React.Component{
     }
 
     _videoInput(){
+      const videoPreview = this.state.videoUrl ? (
+        <video
+          className="preview-video"
+          controls="controls"
+          key={this.state.videoUrl}
+          autoPlay
+        >
+          <source src={this.state.videoUrl} type="video/mp4" />
+        </video>
+      ) : null;
       const display = this.props.formType === "Upload video" ? (
-        <label>
+        <label className="custom-video-upload">
           <input
               type="file"
               onChange={e => this.handleFile(e, "videoFile", "videoUrl")}
           />
-          <span>Drag and drop a file you want to upload</span>
-          <span>Your video will be private until you publish it</span>
+          {videoPreview}
+          <img className="upload-icon" src={window.uploadPic} />
+          <span className="custom-video-text-1">Drag and drop a file you want to upload</span>
+          <span className="custom-video-text-2">Your video will be private until you publish it</span>
+          <div className="select-file-button-container">
+            <span className="select-file-button-text">SELECT FILE</span>
+          </div>
         </label>
       ) : null;
 
@@ -88,8 +103,10 @@ class VideoForm extends React.Component{
 
     _deleteButton(){
       const display = this.props.formType === "Edit video" ? (
-        <div onClick={this.handleDelete}>
-          <span>DELETE VIDEO</span>
+        <div 
+        className="delete-button-container"
+        onClick={this.handleDelete}>
+          <span className="delete-button-text">DELETE VIDEO</span>
         </div>
       ) : null;
 
@@ -101,11 +118,13 @@ class VideoForm extends React.Component{
     }
 
     render(){
-        const preview = this.state.thumbnailUrl ? <img src={this.state.thumbnailUrl} /> : null;
+        const preview = this.state.thumbnailUrl ? <img className="preview-image" src={this.state.thumbnailUrl} /> : null;
         return (
           <form className="form-container" onSubmit={this.handleSubmit}>
             <div className="form-top-section">
-              <span className="form-top-section-text">{this.props.formType}</span>
+              <span className="form-top-section-text">
+                {this.props.formType}
+              </span>
               <div className="form-top-section-close">
                 <span
                   onClick={() => {
@@ -120,44 +139,84 @@ class VideoForm extends React.Component{
               </div>
             </div>
 
-            <label>
-              <input
-                type="text"
-                value={this.state.title}
-                onChange={this.update("title")}
-                placeholder="Add a title that describes your video"
-              />
-              <span>Title (required)</span>
-              <span>{`${this.state.title.length} / 100`}</span>
-            </label>
+            <div className="inputs-container">
+              <div className="detail-container">
+                <span className="detail-text">Details</span>
+              </div>
 
-            <label>
-              <textarea
-                value={this.state.description}
-                onChange={this.update("description")}
-                placeholder="Tell viewers about your video"
-              />
-              <span>Description</span>
-              <span>{`${this.state.description.length} / 5000`}</span>
-            </label>
+              <div className="input-inner">
+                <div className="title-des-thumb">
+                  <div className="title-input">
+                    <label>
+                      <div className="inner-title-input">
+                        <span className="title-text">Title (required)</span>
+                        <input
+                          className="title-type"
+                          type="text"
+                          value={this.state.title}
+                          onChange={this.update("title")}
+                          placeholder="Add a title that describes your video"
+                        />
+                        <div className="word-count-container">
+                          <span className="word-count">{`${this.state.title.length} / 100`}</span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
 
-            <h3>Thumbnail</h3>
-            <label>
-              <span>Upload thumbnail</span>
-              <input
-                type="file"
-                onChange={e =>
-                  this.handleFile(e, "thumbnailFile", "thumbnailUrl")
-                }
-              />
-            </label>
-            {preview}
-                
-            {this._videoInput()}
-            {this._deleteButton()}
+                  <div className="desc-input">
+                    <label>
+                      <div className="inner-desc-input">
+                        <span className="desc-text">Description</span>
+                        <textarea
+                          className="desc-type"
+                          value={this.state.description}
+                          onChange={this.update("description")}
+                          placeholder="Tell viewers about your video"
+                        />
+                        <div className="word-count-container">
+                          <span className="word-count">{`${this.state.description.length} / 5000`}</span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
 
+                  <div className="thumbnail-container">
+                    <h3 className="thumbnail-title">Thumbnail</h3>
 
-            <input type="submit" value="DONE"/>
+                    <p className="thumbnail-text">
+                      Select or upload a picture that shows what's in your
+                      video. A good thumbnail stands out and draws viewers'
+                      attention.
+                    </p>
+
+                    <div className="thumbnail-upload">
+                      <label className="custom-file-upload">
+                        <input
+                          type="file"
+                          onChange={e =>
+                            this.handleFile(e, "thumbnailFile", "thumbnailUrl")
+                          }
+                        />
+                          <img className="photo-icon" src={window.photoPic}/>
+                          <span className="upload-text">Upload thumbnail</span>
+                        
+                      </label>
+                      {preview}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="video-delete">
+                  {this._videoInput()}
+                  {this._deleteButton()}
+                </div>
+              </div>
+            </div>
+
+            <div className="form-submit-container">
+              <input className="form-submit" type="submit" value="DONE" />
+            </div>
           </form>
         );
     }

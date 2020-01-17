@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoIndexItem from './video_index_item';
+import { withRouter } from 'react-router-dom'
 
 class VideoIndex extends React.Component{
 
@@ -11,7 +12,20 @@ class VideoIndex extends React.Component{
         return (
           <div className="index-page">
             <section className="nav-bar">
-                <nav>NavBar</nav>
+              <div className="icon-container" >
+                <img className="icon-pic" src={window.homePic} />
+                <span className="icon-text home-icon">Home</span>
+              </div>
+              <div
+                className="icon-container"
+                onClick={() =>
+                  (window.location =
+                    "https://github.com/guw005/Full-Stack-Project")
+                }
+              >
+                <img className="icon-pic" src={window.githubPic} />
+                <span className="icon-text">github</span>
+              </div>
             </section>
             <section className="video-index">
               <h1 className="recommended-tag">Recommended</h1>
@@ -22,7 +36,7 @@ class VideoIndex extends React.Component{
                     user={this.props.users[video.author_id]}
                     history={this.props.history}
                     key={video.id}
-                    type='indexPage'
+                    type="indexPage"
                   />
                 ))}
               </section>
@@ -32,4 +46,4 @@ class VideoIndex extends React.Component{
     }
 };
 
-export default VideoIndex;
+export default withRouter(VideoIndex);
