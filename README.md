@@ -13,8 +13,11 @@ Here is a working live demo :  https://metube-fsp.herokuapp.com/
 
 ## Site
 ### Video Index Page
+![]("https://github.com/guw005/MeTube/blob/master/index_snap.png")
 ### Video show Page
+![]("https://github.com/guw005/MeTube/blob/master/show_snap.png")
 ### Video Upload Form
+![]("https://github.com/guw005/MeTube/blob/master/upload_snap.png")
 ### Video Edit Form
 
 ## Technologies
