@@ -6,12 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
+Video.destroy_all
 
 require 'open-uri'
 
 demo_user = User.create(username: "Demo User", email: "demouser@gmail.com", password: "password", image_url: "https://pbs.twimg.com/profile_images/378800000699275845/28983bbc0ac0a12cde1c0dc3fc818b4b_400x400.png")
-lucas = User.create(username: "Lucas the Pom", email: "lucas@pom.com", password: "password", image_url:"https://previews.123rf.com/images/amaomam/amaomam1905/amaomam190500004/122898802-cute-pomeranian-cartoon-hand-drawn-style.jpg") 
-bball = User.create(username: "bball", email: "bball@gmail.com", password: "password", image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgTooYXUBH44Whd1dPZFqfM3jkMorgW7hCF8xnCLl6hITUfnr8&s")
+lucas = User.create(username: "Lucas the Pom", email: "lucas@pom.com", password: "12345678", image_url:"https://previews.123rf.com/images/amaomam/amaomam1905/amaomam190500004/122898802-cute-pomeranian-cartoon-hand-drawn-style.jpg") 
+bball = User.create(username: "bball", email: "bball@gmail.com", password: "abcdefgh", image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgTooYXUBH44Whd1dPZFqfM3jkMorgW7hCF8xnCLl6hITUfnr8&s")
 
 
 video1 = Video.new(title: "Hi, my name is Lucas", description: "I'm 5 yrs old", author_id: lucas.id)
