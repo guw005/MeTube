@@ -5,17 +5,21 @@ import VideoShowItem from './video_show_item';
 // import RelatedVideoItem from './related_video_item';
 import VideoIndexItem from './video_index_item';
 // import VideoIndex from './video_index';
+// import CommentIndex from '../comments/comment_index_container';
+
 
 
 class VideoShow extends React.Component{
 
     componentDidMount(){
         this.props.fetchVideo(this.props.match.params.videoId);
+        // this.props.fetchAllComments(this.props.match.params.videoId);
     }
 
     componentDidUpdate(prevProps){
       if(this.props.match.params.videoId != prevProps.match.params.videoId){
-        this.props.fetchVideo(this.props.match.params.videoId)
+        this.props.fetchVideo(this.props.match.params.videoId);
+        // this.props.fetchAllComments(this.props.match.params.videoId);
       }
     }
 
@@ -38,7 +42,7 @@ class VideoShow extends React.Component{
 
     render(){
 
-        const {video, users, relatedVideos, history, currentUser, showModal} = this.props
+        const {video, users, relatedVideos, history, currentUser, showModal, comments} = this.props
         if(!video) return null;
 
         return (
@@ -48,7 +52,9 @@ class VideoShow extends React.Component{
               users={users}
               currentUser={currentUser}
               showModal={showModal}
+              comments={comments}
             />
+            
             <div className="related-video-index">
               <div className="up-next-container">
                 <span className="up-next">Up next</span>

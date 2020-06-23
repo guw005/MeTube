@@ -8,11 +8,13 @@ json.user do
     json.partial! 'api/users/user', user: @video.author
 end
     
-json.videos do
-    @videos.each do |video|
-        json.set! video.id do
-            json.extract! video,:id, :title, :author_id, :view_counts, :created_at
-            json.thumbnail url_for(video.thumbnail)
+if @videos
+    json.videos do
+        @videos.each do |video|
+            json.set! video.id do
+                json.extract! video,:id, :title, :author_id, :view_counts, :created_at
+                json.thumbnail url_for(video.thumbnail)
+            end
         end
     end
 end

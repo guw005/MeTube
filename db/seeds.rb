@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 Video.destroy_all
+# Like.destroy_all
+Comment.destroy_all
 
 require 'open-uri'
 
@@ -84,3 +86,7 @@ video10.thumbnail.attach(io: thumbnail10, filename: 'video10.png')
 video_file10 = open('https://active-storage-metube-pro.s3-us-west-1.amazonaws.com/video10.mp4')
 video10.video_file.attach(io: video_file10, filename: 'video10.MP4')
 video10.save
+
+comment1a = Comment.create(user_id: demo_user.id, video_id: video1.id, body: "Yass!!")
+comment1b = Comment.create(user_id: lucas.id, video_id: video1.id, body: "Yasss!!")
+comment1c = Comment.create(user_id: bball.id, video_id: video1.id, body: "Yassss!!")

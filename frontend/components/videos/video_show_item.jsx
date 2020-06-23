@@ -1,5 +1,6 @@
 import React from 'react';
 import { date } from "./../../util/date_util";
+import CommentIndex from '../comments/comment_index_container';
 
 const VideoShowItem = ({video, users, currentUser, showModal}) => {
 
@@ -53,6 +54,13 @@ const VideoShowItem = ({video, users, currentUser, showModal}) => {
             </section>
             <p className="video-show-video-description">{video.description}</p>
           </section>
+        </section>
+
+        <section>
+          <CommentIndex
+            // comments={comments}
+            video={video}
+          />
         </section>
       </div>
     );

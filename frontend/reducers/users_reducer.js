@@ -1,5 +1,6 @@
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_ALL_VIDEOS, RECEIVE_VIDEO } from "../actions/video_actions";
+import { RECEIVE_ALL_COMMENTS } from '../actions/comment_actions'
 
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -18,6 +19,8 @@ const usersReducer = (state = {}, action) => {
             let nextState = Object.assign({}, state, users);
             nextState[action.payload.user.id] = action.payload.user;
             return nextState;
+        case RECEIVE_ALL_COMMENTS:
+            return Object.assign({}, state, action.payload.users);
         default:
             return state;
     }
