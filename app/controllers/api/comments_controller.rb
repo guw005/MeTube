@@ -31,6 +31,14 @@ class Api::CommentsController < ApplicationController
         end
     end
 
+    def destroy
+        @comment = current_user.comments.find(params[:id])
+        @comment.destroy
+        @video = Video.find(@comment.video_id)
+        @comment_count = @video.comments.count
+        render :show
+    end
+
     def create_like
         @like = Like.new(like_params)
         @like.user_id = current_user.id
@@ -46,7 +54,7 @@ class Api::CommentsController < ApplicationController
 
     def destroy_like
         @like = Like.find_by(user_id: current_user.id,
-                            likeable_id: params[:comment_id],
+                            likable_id: params[:comment_id],
                             likable_type: "Comment")
         @like.destroy
         @comment = Comment.find(@like.likable_id)
@@ -63,6 +71,6 @@ class Api::CommentsController < ApplicationController
     end
 
     def like_params
-        params.require(:ike).permit(:is_like, :likable_type, :likable_id)
+        params.require(:like).permit(:is_like, :likable_type, :likable_id)
     end
 end

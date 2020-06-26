@@ -7,7 +7,9 @@ const commentsReducer = (state={}, action) => {
 
     switch(action.type) {
         case RECEIVE_ALL_COMMENTS:
-            return Object.assign({}, state, action.payload.comments);
+            let comments = action.payload.comments;
+            if (!comments) return {};
+            return comments;
         case RECEIVE_COMMENT:
             return Object.assign({}, state, {[action.payload.comment.id]: action.payload.comment});
         case RECEIVE_LIKE:

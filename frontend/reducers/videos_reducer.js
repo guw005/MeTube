@@ -31,7 +31,7 @@ const videosReducer = (state={}, action) => {
         case RECEIVE_COMMENT:
             return Object.assign({}, state, {[action.payload.video.id]: action.payload.video});
         case REMOVE_COMMENT:
-            return Object.assign({}, state, {[action.payload.video.id]: action.payload.video})
+            return Object.assign({}, state, {[action.payload.video.id]: action.payload.video});
         default:
             return state;
     }

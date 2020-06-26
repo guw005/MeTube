@@ -10,6 +10,12 @@ class User < ApplicationRecord
         foreign_key: :author_id,
         class_name: :Video
 
+    has_many :comments,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Comment,
+        dependent: :destroy
+
     attr_reader :password
     def password=(password)
         @password = password

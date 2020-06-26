@@ -17,7 +17,7 @@
   border: none;
   padding: 5px 0;
   border-bottom: solid 1px rgb(231, 231, 231);
-  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  transition: all 0.7s cubic-bezier(0.64, 0.09, 0.08, 1);
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0) 96%,
@@ -44,9 +44,22 @@
     /* margin-right:18px; */
 }
 
-.comment-input-buttons {
+.edit-comment-container {
+    width: 100%;
+}
+
+#comment-input-buttons {
+    display: none;
+    padding-top: 8px;
+    /* display: flex; */
+    justify-content: flex-end;
+}
+
+#edit-comment-input-buttons {
+    /* display: none; */
     padding-top: 8px;
     display: flex;
+    /* display: flex; */
     justify-content: flex-end;
 }
 
@@ -71,7 +84,18 @@
     border-radius: 5%;
 }
 
-.comment-submit-button input {
+.edit-comment-submit-button {
+    width: 70px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #065fd4;
+    /* color: white; */
+    border-radius: 5%;
+}
+
+.comment-submit-button input, .edit-comment-submit-button input {
     background: none;
     border: none;
     color: white;

@@ -7,7 +7,7 @@ const msp = (state, ownProps) => {
         comment: {
             body: '',
             video_id: ownProps.video.id,
-            showCreateButton: false
+            // showCreateButton: false
         },
         users: state.entities.users,
         currentUser: state.session.id,

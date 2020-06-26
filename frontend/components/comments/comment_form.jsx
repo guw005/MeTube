@@ -6,6 +6,8 @@ class CommentForm extends React.Component {
         super(props);
         this.state = this.props.comment;
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.showButtons = this.showButtons.bind(this);
+        this.hideForm = this.hideForm.bind(this);
     }
 
     handleSubmit(e) {
@@ -25,11 +27,21 @@ class CommentForm extends React.Component {
         }
     }
 
+    showButtons() {
+        document.getElementById("comment-input-buttons").style.display = "flex";
+    }
+
+    hideForm() {
+        document.getElementById("comment-input-buttons").style.display ="none";
+    }
+
     render() {
         return (
             <div className="create-comment-container">
                 <div className="create-comment-pic-container">
-                    <img className="create-comment-pic" src={this.props.users[this.props.currentUser].image_url}/>
+                    {this.props.currentUser ? (
+                        <img className="create-comment-pic" src={this.props.users[this.props.currentUser].image_url}/>
+                    ) : null}
                 </div>
 
                 <div className="comment-body-input-container">
@@ -39,10 +51,14 @@ class CommentForm extends React.Component {
                             placeholder="Add a public comment..."
                             onChange={this.update('body')}
                             value={this.state.body}
+                            onClick={this.showButtons}
                         />
-                    
-                    <div className="comment-input-buttons">
-                        <div className="comment-cancel-button">
+                
+                    <div id="comment-input-buttons">
+                        <div 
+                            className="comment-cancel-button"
+                            onClick={this.hideForm}
+                            >
                             <span>CANCEL</span>
                         </div>
 
@@ -50,6 +66,7 @@ class CommentForm extends React.Component {
                             <input type="submit" value="COMMENT" />
                         </div>
                     </div>
+
                     </form>
                 </div>
 
