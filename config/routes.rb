@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post :create_like
       delete :destroy_like
     end
+    get :search, controller: 'videos'
   end
 
   get '/api/session/google', :to => 'api/sessions#google_sign_in'

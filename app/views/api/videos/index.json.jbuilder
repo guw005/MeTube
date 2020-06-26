@@ -2,6 +2,7 @@
     json.videos do
         json.set! video.id do
             json.partial! 'api/videos/video', video: video
+            json.extract! video, :description
         end
     end
 

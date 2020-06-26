@@ -32,4 +32,8 @@ class Video < ApplicationRecord
             errors[:thumbnail] << "Must be attached"
         end
     end
+
+    def self.search_by_title(search_input)
+        Video.where("title ILIKE :search", search: "%#{search_input}%").to_a
+    end
 end
