@@ -10,6 +10,10 @@ class VideoForm extends React.Component{
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+    componentWillUnmount() {
+      this.props.clearErrors();
+    }
+
     update(type){
         return e => {
             this.setState({ [type]: e.currentTarget.value })
@@ -57,6 +61,7 @@ class VideoForm extends React.Component{
     }
 
     _videoInput(){
+      const videoFileError = this._displayError('video file');
       const videoPreview = this.state.videoUrl ? (
         <video
           className="preview-video"
@@ -74,12 +79,22 @@ class VideoForm extends React.Component{
               onChange={e => this.handleFile(e, "videoFile", "videoUrl")}
           />
           {videoPreview}
-          <img className="upload-icon" src={window.uploadPic} />
+          <img className={`upload-icon ${videoFileError ? "error-video-file-style" : null}`} src={window.uploadPic} />
           <span className="custom-video-text-1">Drag and drop a file you want to upload</span>
           <span className="custom-video-text-2">Your video will be private until you publish it</span>
           <div className="select-file-button-container">
             <span className="select-file-button-text">SELECT FILE</span>
           </div>
+
+          {videoFileError && (
+          <div className="error-message-container">
+            <img className="error-icon" src={window.errorIcon} />
+            <span>
+              {videoFileError}
+            </span>
+          </div>
+          )}
+
         </label>
       ) : null;
 
@@ -117,8 +132,16 @@ class VideoForm extends React.Component{
       )
     }
 
+    _displayError(field){
+      const errors = this.props.errors;
+      return errors.find(error => error.toLowerCase().includes(field));
+    }
+
     render(){
         const preview = this.state.thumbnailUrl ? <img className="preview-image" src={this.state.thumbnailUrl} /> : null;
+        const titleError = this._displayError('title');
+        const thumbnailError = this._displayError('thumbnail');
+        
         return (
           <form className="form-container" onSubmit={this.handleSubmit}>
             <div className="form-top-section">
@@ -146,7 +169,7 @@ class VideoForm extends React.Component{
 
               <div className="input-inner">
                 <div className="title-des-thumb">
-                  <div className="title-input">
+                  <div className={`title-input ${titleError ? "error-style" : null}`}>
                     <label>
                       <div className="inner-title-input">
                         <span className="title-text">Title (required)</span>
@@ -161,6 +184,14 @@ class VideoForm extends React.Component{
                           <span className="word-count">{`${this.state.title.length} / 100`}</span>
                         </div>
                       </div>
+
+                        {titleError && (
+                        <div className="error-message-container">
+                          <img className="error-icon" src={window.errorIcon}/>
+                          <span>{titleError}</span>
+                        </div>
+                        )}
+
                     </label>
                   </div>
 
@@ -191,7 +222,7 @@ class VideoForm extends React.Component{
                     </p>
 
                     <div className="thumbnail-upload">
-                      <label className="custom-file-upload">
+                      <label className={`custom-file-upload ${thumbnailError ? "error-style" : null}`}>
                         <input
                           type="file"
                           onChange={e =>
@@ -202,6 +233,15 @@ class VideoForm extends React.Component{
                           <span className="upload-text">Upload thumbnail</span>
                         
                       </label>
+
+                      {thumbnailError && (
+                      <div className="error-message-container">
+                        <img className="error-icon" src={window.errorIcon} />
+                        <span>{thumbnailError}</span>
+                      </div>
+                      )}
+
+
                       {preview}
                     </div>
                   </div>

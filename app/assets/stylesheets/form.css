@@ -157,6 +157,7 @@ input[type='file']{
 .thumbnail-upload {
     display: flex;
     height: 74px;
+    flex-direction: column;
 }
 
 .custom-file-upload {
@@ -288,5 +289,27 @@ input[type='file']{
     color: white;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.error-style {
+    border-color: red;
+}
+
+.error-message-container {
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    font-size: 12px;
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.error-icon {
+    width: 13px;
+    height: 13px;
+}
+
+.error-video-file-style {
+    border: 2px solid red;
 }
 
