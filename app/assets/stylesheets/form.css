@@ -313,3 +313,61 @@ input[type='file']{
     border: 2px solid red;
 }
 
+#confirm-container {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.delete-section {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirm-button-container{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 10px;
+}
+
+.confirm-button-blue{
+    background: #065fd4;
+    border-radius: 5%;
+    width: 67px;
+    height: 36px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-button-red{
+    background: #cc0000;
+    border-radius: 5%;
+    width: 67px;
+    height: 36px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-message {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}

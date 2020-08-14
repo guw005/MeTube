@@ -116,13 +116,45 @@ class VideoForm extends React.Component{
       })
     }
 
+    showConfirm(){
+      const confirmContainer = document.getElementById("confirm-container");
+      confirmContainer.style.display = "flex";
+    }
+
+    hideConfirm(){
+      const confirmContainer = document.getElementById("confirm-container");
+      confirmContainer.style.display = "none";
+    }
+
     _deleteButton(){
       const display = this.props.formType === "Edit video" ? (
-        <div 
-        className="delete-button-container"
-        onClick={this.handleDelete}>
-          <span className="delete-button-text">DELETE VIDEO</span>
+        <div className="delete-section">
+          <div 
+          className="delete-button-container"
+          onClick={this.showConfirm}>
+            <span className="delete-button-text">DELETE VIDEO</span>
+
+          </div>
+
+          <div id="confirm-container">
+            <p className="confirm-message">Delete forever?</p>
+            <div className="confirm-button-container">
+              <div 
+                className="confirm-button-blue"
+                onClick={this.hideConfirm}>
+                <span>CANCEL</span>
+              </div>
+              <div
+                className="confirm-button-red"
+                onClick={this.handleDelete}
+              >
+                <span>YES</span>
+              </div>
+            </div>
+          </div>
         </div>
+
+
       ) : null;
 
       return(
