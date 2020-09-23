@@ -13,6 +13,7 @@ class VideoShow extends React.Component{
 
     componentDidMount(){
         this.props.fetchVideo(this.props.match.params.videoId);
+        window.scrollTo(0, 0);
         // this.props.fetchAllComments(this.props.match.params.videoId);
     }
 
